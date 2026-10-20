@@ -21,11 +21,12 @@
     var link = e.target.closest && e.target.closest('a[href^="mailto:"]');
     if (!link) return;
     var address = link.getAttribute('href').slice(7).split('?')[0];
-    var done = function () { toast('Address copied: ' + address); };
+    var copied = function () { toast('Address copied: ' + address); };
+    var failed = function () { toast('Email us at ' + address); };
     if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(address).then(done, function () { if (fallbackCopy(address)) done(); });
-    } else if (fallbackCopy(address)) {
-      done();
+      navigator.clipboard.writeText(address).then(copied, function () { (fallbackCopy(address) ? copied : failed)(); });
+    } else {
+      (fallbackCopy(address) ? copied : failed)();
     }
   });
 })();
