@@ -166,3 +166,7 @@ p { margin: 0; }
   html { scroll-behavior: auto; }
   .dev-cycle * { transition: none !important; }
 }
+
+/* "Address copied" note for email links */
+.toast { position: fixed; left: 50%; bottom: 28px; z-index: 20; transform: translate(-50%, 12px); opacity: 0; transition: opacity 0.25s ease, transform 0.25s ease; background: #1E1729; color: var(--title); border: 1px solid var(--gold); padding: 12px 20px; font-size: 16px; font-weight: 500; max-width: calc(100% - 32px); text-align: center; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
